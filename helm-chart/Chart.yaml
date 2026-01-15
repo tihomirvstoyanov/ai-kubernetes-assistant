@@ -1,0 +1,17 @@
+apiVersion: v2
+name: ai-log-tool
+description: AI-Powered Kubernetes Log Analysis Tool
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - kubernetes
+  - ai
+  - logs
+  - troubleshooting
+home: https://github.com/your-username/AI-Powered-Log-Tool
+sources:
+  - https://github.com/your-username/AI-Powered-Log-Tool
+maintainers:
+  - name: Your Name
+    email: your-email@example.com

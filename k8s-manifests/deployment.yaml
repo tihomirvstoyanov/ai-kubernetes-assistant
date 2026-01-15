@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-log-tool
+  namespace: ai-log-tool
+  labels:
+    app: ai-log-tool
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-log-tool
+  template:
+    metadata:
+      labels:
+        app: ai-log-tool
+    spec:
+      serviceAccountName: ai-log-tool
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: ai-log-tool
+        image: tihomirvstoyanov/ai-log-tool:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: GROQ_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ai-log-tool-secret
+              key: groq-api-key
+        - name: PORT
+          value: "5000"
+        - name: FLASK_ENV
+          value: "production"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1001
+          capabilities:
+            drop:
+            - ALL

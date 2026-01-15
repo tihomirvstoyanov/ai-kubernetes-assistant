@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="chat-container">
+    <div class="header">
+        <div class="header-icon">⎈</div>
+        <div class="header-text">
+            <h1>Kubernetes AI Assistant</h1>
+            <p>Powered by Groq AI</p>
+        </div>
+    </div>
+    
+    <div id="chat-box">
+        <div class="welcome-message">
+            <h3>👋 Welcome!</h3>
+            <p>Ask me anything about your Kubernetes cluster. I can help you:</p>
+            <ul>
+                <li>Check pod status and logs</li>
+                <li>Troubleshoot deployments</li>
+                <li>Scale applications</li>
+                <li>Monitor resource usage</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <input id="user-input" placeholder="Ask about your Kubernetes cluster..." />
+        <button onclick="sendMessage()">
+            <span class="button-text">Send</span>
+            <span class="button-icon">→</span>
+        </button>
+    </div>
+</div>
+
+<script src="/static/js/chat.js"></script>
+</body>
+</html>

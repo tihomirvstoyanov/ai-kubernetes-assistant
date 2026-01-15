@@ -1,0 +1,27 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "ai-log-tool.fullname" . }}
+  labels:
+    {{- include "ai-log-tool.labels" . | nindent 4 }}
+rules:
+{{- with .Values.rbac.rules }}
+  {{- toYaml . | nindent 2 }}
+{{- end }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "ai-log-tool.fullname" . }}
+  labels:
+    {{- include "ai-log-tool.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "ai-log-tool.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "ai-log-tool.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}

@@ -32,7 +32,21 @@ The AI analyzes the results and provides clear, actionable insights.
 
 ## Quick Start
 
-### Option 1: Helm Deployment (Recommended)
+### Option 1: Terraform Deployment
+
+```bash
+cd terraform
+terraform init
+cp terraform.tfvars.example terraform.tfvars
+# Edit terraform.tfvars and add your Groq API key
+
+terraform apply
+kubectl port-forward -n ai-log-tool svc/ai-log-tool 8080:80
+```
+
+See [terraform/README.md](terraform/README.md) for detailed configuration options.
+
+### Option 2: Helm Deployment (Recommended)
 
 ```bash
 # Install with your API key
@@ -82,7 +96,7 @@ helm install ai-log-tool ./helm-chart \
   -f my-values.yaml
 ```
 
-### Option 2: Manual Kubernetes Deployment
+### Option 3: Manual Kubernetes Deployment
 
 ```bash
 # 1. Create namespace
@@ -119,7 +133,7 @@ ssh -L 8080:localhost:8080 root@<vm-ip>
 
 Then open http://localhost:8080 on your laptop.
 
-### Option 3: Local Development
+### Option 4: Local Development
 
 ```bash
 # 1. Copy environment template
@@ -137,7 +151,7 @@ python app.py
 
 Access at http://localhost:5000
 
-### Option 4: Docker Compose
+### Option 5: Docker Compose
 
 ```bash
 # Build and run

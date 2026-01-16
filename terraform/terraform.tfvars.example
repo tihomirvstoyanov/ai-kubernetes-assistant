@@ -1,0 +1,23 @@
+# Groq API Key - Get free key from https://console.groq.com/
+groq_api_key = "your-groq-api-key-here"
+
+# Optional: Customize deployment
+# namespace = "ai-log-tool"
+# replicas = 1
+# image = "tihomirvstoyanov/ai-log-tool:latest"
+
+# Optional: Resource limits
+# cpu_limit = "500m"
+# memory_limit = "512Mi"
+# cpu_request = "100m"
+# memory_request = "128Mi"
+
+# Optional: Enable ingress
+# enable_ingress = true
+# ingress_host = "ai-log-tool.yourdomain.com"
+# ingress_class = "nginx"
+# ingress_tls_enabled = true
+# ingress_tls_secret = "ai-log-tool-tls"
+# ingress_annotations = {
+#   "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
+# }
